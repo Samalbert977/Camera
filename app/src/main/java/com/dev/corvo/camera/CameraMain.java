@@ -404,12 +404,12 @@ public class CameraMain extends AppCompatActivity implements SensorEventListener
                 exifInterface.setAttribute(ExifInterface.TAG_F_NUMBER,Aperture);
             if (setting.getBoolean(keys.LOCATION_KEY, false)){
                 if (locationClass != null) {
-                    String LONGITUDE = getGeoCoordinates(locationClass,"Longitude");
-                    String LATITUDE = getGeoCoordinates(locationClass,"latitude");
+                    String LONGITUDE = getGeoCoordinates(location,"Longitude");
+                    String LATITUDE = getGeoCoordinates(location,"latitude");
                     exifInterface.setAttribute(ExifInterface.TAG_GPS_LONGITUDE, LONGITUDE);//locationToDMS(locationClass.getLatitude())
-                    exifInterface.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF, locationClass.getLongitude() > 0 ? "N" : "S");
+                    exifInterface.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF, location.getLongitude() > 0 ? "N" : "S");
                     exifInterface.setAttribute(ExifInterface.TAG_GPS_LATITUDE, LATITUDE);//locationToDMS(locationClass.getLongitude())
-                    exifInterface.setAttribute(ExifInterface.TAG_GPS_LATITUDE_REF, locationClass.getLatitude() > 0 ? "E" : "W");
+                    exifInterface.setAttribute(ExifInterface.TAG_GPS_LATITUDE_REF, location.getLatitude() > 0 ? "E" : "W");
                 }}
             exifInterface.saveAttributes();
         } catch (IOException | NullPointerException e) {
@@ -584,7 +584,7 @@ public class CameraMain extends AppCompatActivity implements SensorEventListener
 
             if (sharedpreference.getInt(keys.FLASH_KEY, 0) == 0) {
                 editor.putInt(keys.FLASH_KEY, 1);
-                editor.commit();
+                editor.apply();
                 p.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
                 flash.setImageResource(R.mipmap.flash_on);
             } else if (sharedpreference.getInt(keys.FLASH_KEY, 0) == 1) {
@@ -1206,7 +1206,7 @@ public class CameraMain extends AppCompatActivity implements SensorEventListener
             if (sharedpreference.getBoolean("HDR", false)) {
                 Hdr.setImageResource(R.mipmap.hdr_off);
                 editor.putBoolean("HDR", false);
-                editor.commit();
+                editor.apply();
                 p.setSceneMode(Camera.Parameters.SCENE_MODE_AUTO);
                 p.setColorEffect(Camera.Parameters.EFFECT_NONE);
                 SetCameraParameters();
@@ -1290,7 +1290,7 @@ public class CameraMain extends AppCompatActivity implements SensorEventListener
                 }
             }
             if (locationClass != null)
-                locationClass = locationClass.getLocation();
+                location = locationClass.getLocation();
             try {
                 path = pictureFile.getCanonicalPath();
             } catch (IOException e) {
