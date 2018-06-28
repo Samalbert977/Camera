@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context="com.dev.corvo.camera.CameraMain"
+    android:id="@+id/root"
+    android:focusableInTouchMode="true"
+    android:background="@android:color/background_dark">
+
+    <RelativeLayout
+        android:id="@+id/VIEW"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/Panel2"
+        android:layout_toStartOf="@+id/Panel1"
+        android:visibility="visible">
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/surface2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/Panel2"
+        android:layout_toStartOf="@+id/Panel1"
+        android:visibility="visible">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/surface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/Panel1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@android:drawable/screen_background_dark_transparent"
+        android:visibility="visible"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true">
+
+        <ImageView
+            android:id="@+id/gallery"
+            android:onClick="openGallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/galleryicon"
+            android:layout_marginTop="32dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:contentDescription=""
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/switchCamera"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/cameraswitch"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="31dp"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/shutter"
+            android:background="@android:color/transparent"
+            android:onClick="TakePic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/capture2"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            tools:ignore="ContentDescription" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Panel2"
+        android:layout_width="84dp"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:background="@android:drawable/screen_background_dark_transparent"
+        android:layout_alignParentStart="true">
+
+        <ImageButton
+            android:id="@+id/Color_effect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/color_effect"
+            android:background="@android:color/transparent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            tools:ignore="ContentDescription"
+            android:onClick="onClickColorEffect"/>
+
+        <ImageButton
+            android:id="@+id/flash"
+            android:background="@android:color/transparent"
+            android:onClick="ChangeFlashState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/flash_auto"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/HDR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:srcCompat="@mipmap/hdr_off"
+            android:layout_marginBottom="10dp"
+            tools:ignore="ContentDescription"
+            android:layout_above="@+id/Color_effect"
+            android:layout_below="@+id/flash"
+            android:layout_alignParentStart="true"
+            android:onClick="onClickHdr"/>
+
+        <ImageButton
+            android:id="@+id/WhiteBalance"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/whitebalance"
+            android:layout_marginBottom="23dp"
+            android:layout_above="@+id/TimerIcon"
+            android:layout_below="@+id/Color_effect"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            tools:ignore="ContentDescription"
+            android:onClick="onClickWhiteBalance"/>
+
+        <ImageButton
+            android:id="@+id/TimerIcon"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/timer_icon"
+            android:layout_marginBottom="21dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            tools:ignore="ContentDescription"
+            android:onClick="onClickTimer"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Panel3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/surface2"
+        android:layout_marginRight="53dp"
+        android:layout_marginLeft="200dp"
+        android:layout_toEndOf="@+id/Panel2"
+        android:visibility="visible"
+        tools:ignore="RtlHardcoded">
+
+        <SeekBar
+            android:id="@+id/SeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:rotation="180"
+            android:visibility="invisible"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Menu_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/Panel2"
+        android:layout_toStartOf="@+id/Panel1"
+        android:background="@android:drawable/screen_background_dark_transparent"
+        android:visibility="invisible">
+
+        <ListView
+            android:id="@+id/Timer_List"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@android:color/transparent" />
+
+        <ListView
+            android:id="@+id/CE_List"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@android:color/transparent" />
+
+        <ListView
+            android:id="@+id/Wb_List"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@android:color/transparent"></ListView>
+
+        <ListView
+            android:id="@+id/Focus_list"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@android:color/transparent" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/Panel1"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/Panel4"
+        >
+        <SeekBar
+            android:id="@+id/exposurebar"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:rotation="180"
+            android:layout_marginBottom="20dp"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/Timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_centerInParent="true"
+        android:textSize="200sp"
+        android:textColor="@android:color/white"
+        android:background="@android:color/transparent"/>
+
+    <ImageButton
+        android:id="@+id/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_toStartOf="@+id/Panel1"
+        android:background="@mipmap/bg"
+        android:onClick="OpenSettings"
+        android:visibility="visible"
+        app:srcCompat="@mipmap/settings"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+
+</RelativeLayout>
